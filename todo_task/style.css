@@ -19,7 +19,7 @@ h1 {
     overflow: hidden;
 }
 
-.task {
+.task-input {
     width: 100%;
 
     padding: 8px 16px;
@@ -37,13 +37,31 @@ ul {
     margin: 0;
     padding: 0;
 }
-li {
+.task-list {
     list-style: none;
     padding: 8px 0;
     padding-left: 16px;
     font-size: 18px;
     border-bottom: 1px solid grey;
     transition: all 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.buttons {
+    padding-right: 8px;
+}
+.edit {
+    background-color: green;
+}
+.complete {
+    background-color: blue;
+}
+.isCompleted {
+    text-decoration: line-through;
+}
+.delete {
+    background-color: red;
 }
 li:last-child {
     border: none;
