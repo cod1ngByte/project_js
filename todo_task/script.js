@@ -39,28 +39,31 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderListObject(listObj, index) {
         const listItem = document.createElement("li");
         listItem.classList.add("task-list");
+        const p = document.createElement("p");
+
         if (listObj.isCompleted) {
-            listItem.classList.add("isCompleted");
+            p.classList.add("isCompleted");
         }
         listItem.id = index;
-        listItem.textContent = listObj.value;
+        // listItem.textContent = listObj.value;
+        p.textContent = listObj.value;
 
         const buttons = document.createElement("div");
         buttons.classList.add("buttons");
 
         const editBtn = document.createElement("button");
-        editBtn.classList.add("edit");
+        editBtn.classList.add("edit", "btn");
         editBtn.textContent = "Edit";
         const completeBtn = document.createElement("button");
-        completeBtn.classList.add("complete");
+        completeBtn.classList.add("complete", "btn");
         completeBtn.textContent = "Complete";
         const deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("delete");
+        deleteBtn.classList.add("delete", "btn");
         deleteBtn.textContent = "Delete";
 
         buttons.append(editBtn, completeBtn, deleteBtn);
 
-        listItem.append(buttons);
+        listItem.append(p, buttons);
 
         taskContainer.append(listItem);
     }
