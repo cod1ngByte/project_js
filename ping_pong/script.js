@@ -21,11 +21,30 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     //initail position of table with respect to game-arena
     pingDir = {
-        y: 187.5,
+        y: 180,
     };
 
     draw(ball, ballDir);
     draw(ping, pingDir);
+
+    let id = setInterval(() => {
+        updateBallMov();
+    }, 10);
+
+    document.addEventListener("keydown", pingMovement);
+
+    function pingMovement(e) {
+        if (e.code === "ArrowUp" && pingDir.y > 0) {
+            pingDir.y = pingDir.y - 10;
+            draw(ping, pingDir);
+        } else if (
+            e.code === "ArrowDown" &&
+            pingDir.y < gameArena.offsetHeight - ping.offsetHeight - 5
+        ) {
+            pingDir.y = pingDir.y + 10;
+            draw(ping, pingDir);
+        }
+    }
 
     function draw(ele, eleDir) {
         ele.style.left = `${eleDir.x}px`;
@@ -42,17 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
             ballDir.x > gameArena.offsetWidth - ball.offsetWidth ||
             ballDir.x <= 0
         ) {
-            dx = dx * -1;
+            dx = dx * -1; //changing the direction of ball in x
         }
         if (
             ballDir.y > gameArena.offsetHeight - ball.offsetHeight ||
             ballDir.y <= 0
         ) {
-            dy = dy * -1;
+            dy = dy * -1; // changing the direction of ball in y
         }
     }
-    // updateBallMov();
-    // let id = setInterval(() => {
-    //     updateBallMov();
-    // }, 10);
 });
