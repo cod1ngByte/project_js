@@ -5,50 +5,54 @@ document.addEventListener("DOMContentLoaded", function () {
     const ball = document.querySelector(".ball");
 
     //initial value :
+    // console.log(gameArena.offsetWidth);
+    // console.log(gameArena.offsetHeight);
+    // console.log(ball.offsetWidth);
+    // console.log(ball.offsetHeight);
 
-    let dx = 10;
-    let dy = 10;
+    //displacement of ball in x and y direction
+    let dx = 2;
+    let dy = 2;
 
+    //initial position of ball with respect to game-arena
     ballDir = {
         x: 350,
         y: 225,
     };
-
+    //initail position of table with respect to game-arena
     pingDir = {
         y: 187.5,
     };
+
+    draw(ball, ballDir);
+    draw(ping, pingDir);
 
     function draw(ele, eleDir) {
         ele.style.left = `${eleDir.x}px`;
         ele.style.top = `${eleDir.y}px`;
     }
-    draw(ball, ballDir);
-    draw(ping, pingDir);
 
     function updateBallMov() {
-        if (ballDir.x >= gameArena.offsetWidth - ball.offsetWidth) {
-            dx = dx * -1;
-            ballDir.x = ballDir.x + dx;
-        }
-        if (ballDir.y >= gameArena.offsetHeight - ball.offsetHeight) {
-            dy = dy * -1;
-            ballDir.y = ballDir.y + dy;
-        }
-        if (ballDir.x <= 0) {
-            dx = dx * -1;
-            ballDir.x = ballDir.x + dx;
-        }
-        if (ballDir.y <= 0) {
-            dy = dy * -1;
-            ballDir.y = ballDir.y + dy;
-        }
         ballDir.x = ballDir.x + dx;
         ballDir.y = ballDir.y + dy;
 
         draw(ball, ballDir);
+
+        if (
+            ballDir.x > gameArena.offsetWidth - ball.offsetWidth ||
+            ballDir.x <= 0
+        ) {
+            dx = dx * -1;
+        }
+        if (
+            ballDir.y > gameArena.offsetHeight - ball.offsetHeight ||
+            ballDir.y <= 0
+        ) {
+            dy = dy * -1;
+        }
     }
     // updateBallMov();
-    setInterval(() => {
-        updateBallMov();
-    }, 500);
+    // let id = setInterval(() => {
+    //     updateBallMov();
+    // }, 10);
 });

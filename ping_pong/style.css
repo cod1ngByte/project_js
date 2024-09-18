@@ -27,6 +27,7 @@ body {
 .ping-pong {
     width: 10px;
     height: 75px;
+    margin-left: 5px;
     background: linear-gradient(
         108.4deg,
         rgb(253, 44, 56) 3.3%,
