@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.game-arena {
+    width: 700px;
+    height: 450px;
+    margin-inline: auto;
+    background: radial-gradient(
+        circle at 48.7% 44.3%,
+        rgb(30, 144, 231) 0%,
+        rgb(56, 113, 209) 22.9%,
+        rgb(38, 76, 140) 76.7%,
+        rgb(31, 63, 116) 100.2%
+    );
+    position: relative;
+}
+.ping-pong {
+    width: 10px;
+    height: 75px;
+    background: linear-gradient(
+        108.4deg,
+        rgb(253, 44, 56) 3.3%,
+        rgb(176, 2, 12) 98.4%
+    );
+    position: absolute;
+}
+.ball {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 18.7% 37.8%,
+        rgb(250, 250, 250) 0%,
+        rgb(225, 234, 238) 90%
+    );
+    position: absolute;
+}
+.start-game {
+    background-color: #40c057;
+    padding: 8px 16px;
+    font-size: 24px;
+    width: 100px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+.start-game:hover {
+    background-color: #37b24d;
+}
