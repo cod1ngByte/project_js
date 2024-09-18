@@ -1,21 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("loaded");
+
+    const score = document.querySelector(".score");
     const gameArena = document.querySelector(".game-arena");
     const ping = document.querySelector(".ping-pong");
     const ball = document.querySelector(".ball");
+    const start = document.querySelector(".start-game");
+    console.log(start);
     let py;
     let dx;
     let dy;
     let id;
-
+    let count = 0;
     let ballDir = {};
     let pingDir = {};
 
     init();
 
-    id = setInterval(() => {
-        updateBallMov();
-    }, 10);
+    start.addEventListener("click", (e) => {
+        console.log(e.target);
+        e.target.style.visibility = "hidden";
+
+        id = setInterval(() => {
+            updateBallMov();
+        }, 10);
+    });
 
     document.addEventListener("keydown", pingMovement);
 
@@ -56,16 +65,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (
             ballDir.x < ping.offsetLeft + ping.offsetWidth &&
             ballDir.y > ping.offsetTop &&
-            ballDir.y < ping.offsetTop + ping.offsetHeight
+            ballDir.y + ball.offsetHeight < ping.offsetTop + ping.offsetHeight
         ) {
             dx = dx * -1;
+            count = count + 1;
+            score.textContent = `Score : ${count}`;
         }
 
         //changing the direction of ball in x direction with respect to game arena
-        if (
-            ballDir.x > gameArena.offsetWidth - ball.offsetWidth ||
-            ballDir.x <= 0
-        ) {
+        if (ballDir.x > gameArena.offsetWidth - ball.offsetWidth) {
             dx = dx * -1; //changing the direction of ball in x
         }
 
@@ -76,12 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
             dy = dy * -1; // changing the direction of ball in y
         }
-    }
-
-    function collision() {
-        //  else {
-        //     clearInterval(id);
-        // }
+        if (ballDir.x <= 0) {
+            clearInterval(id);
+            alert(`Game over : your score is ${count}`);
+            window.location.reload();
+        }
     }
 
     function pingMovement(e) {
