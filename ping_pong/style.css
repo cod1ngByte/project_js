@@ -33,6 +33,7 @@ body {
         rgb(176, 2, 12) 98.4%
     );
     position: absolute;
+    /* top: 187.5px; */
 }
 .ball {
     width: 15px;
@@ -44,6 +45,8 @@ body {
         rgb(225, 234, 238) 90%
     );
     position: absolute;
+    /* top: 225px;
+    left: 350px; */
 }
 .start-game {
     background-color: #40c057;
