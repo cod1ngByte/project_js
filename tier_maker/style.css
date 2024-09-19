@@ -86,3 +86,15 @@ img {
     height: 70px;
     margin: 2px;
 }
+
+.upload-image-container {
+    background-color: #5a554f;
+    text-align: center;
+}
+
+.upload-image-container label {
+    display: inline-block;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #fff;
+}

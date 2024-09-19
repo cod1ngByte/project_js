@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const imageContainer = document.querySelector(".image-container");
+    const inputImage = document.querySelector("#upload-image");
     let dragElement;
 
     init();
 
-    //drop into box
+    //------------->drop into box
     const boxes = document.querySelectorAll(".box");
     boxes.forEach((box) => {
         box.addEventListener("dragover", (e) => {
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    //drop back to image container
+    //---------------->drop back to image container
     imageContainer.addEventListener("dragover", (e) => {
         e.preventDefault();
     });
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         imageContainer.append(dragElement);
     });
 
-    //changing the name of tier
+    //-------------->changing the name of tier
     const settings = document.querySelectorAll(".setting");
     settings.forEach((setting) => {
         setting.addEventListener("click", (e) => {
@@ -42,6 +43,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 box.firstElementChild.textContent = newName;
             }
         });
+    });
+
+    //-------------->upload images
+
+    inputImage.addEventListener("change", function (e) {
+        const files = e.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            if (file.type.startsWith("image/")) {
+                const img = document.createElement("img");
+                img.src = URL.createObjectURL(file);
+                //create an object url for the file
+                img.setAttribute("draggable", "true");
+                img.addEventListener("dragstart", (e) => {
+                    dragElement = e.target;
+                });
+                img.onload = function () {
+                    //release the object url after the image is loaded
+                    URL.revokeObjectURL(img.src);
+                };
+                imageContainer.appendChild(img);
+            }
+        }
     });
 
     function init() {
