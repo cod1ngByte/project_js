@@ -10,9 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
         box.addEventListener("dragover", (e) => {
             e.preventDefault();
         });
-
+        box.addEventListener("dragenter", () => {
+            box.classList.add("hover");
+        });
+        box.addEventListener("dragleave", () => {
+            box.classList.remove("hover");
+        });
         box.addEventListener("drop", (e) => {
             box.append(dragElement);
+            box.classList.remove("hover");
         });
     });
 
@@ -23,6 +29,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     imageContainer.addEventListener("drop", (e) => {
         imageContainer.append(dragElement);
+    });
+
+    //changing the name of tier
+    const settings = document.querySelectorAll(".setting");
+    settings.forEach((setting) => {
+        setting.addEventListener("click", (e) => {
+            const newName = prompt("enter the new name for rating");
+            if (newName) {
+                //find nearest parent element
+                const box = e.target.closest(".box");
+                box.firstElementChild.textContent = newName;
+            }
+        });
     });
 
     function init() {

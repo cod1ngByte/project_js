@@ -30,6 +30,9 @@ h1 {
     flex-wrap: wrap;
     position: relative;
 }
+.hover {
+    background-color: #9e9488;
+}
 .setting {
     position: absolute;
     left: -2px;
